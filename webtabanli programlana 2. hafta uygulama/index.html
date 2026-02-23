@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEUShareBox</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>BEUShareBox</h1>
+      <p class="subtitle">A mini product sharing wall for classroom projects</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel" aria-labelledby="add-product-heading">
+      <h2 id="add-product-heading">Add Product</h2>
+      <form id="productForm" novalidate>
+        <div class="field">
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" maxlength="80" required>
+        </div>
+
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="4" maxlength="300" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="price">Price</label>
+          <input id="price" name="price" type="number" min="0" step="0.01" required>
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="">Select category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Books">Books</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Home">Home</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="productUrl">Product URL (optional)</label>
+          <input
+            id="productUrl"
+            name="productUrl"
+            type="url"
+            placeholder="https://example.com/product"
+            inputmode="url"
+          >
+        </div>
+
+        <div class="field">
+          <label for="imageUrl">Image URL (optional)</label>
+          <input
+            id="imageUrl"
+            name="imageUrl"
+            type="url"
+            placeholder="https://example.com/product-image.jpg"
+            inputmode="url"
+          >
+        </div>
+        <p id="autoFillStatus" class="field-hint" aria-live="polite"></p>
+
+        <button type="submit" class="btn btn-primary">Add Product</button>
+        <p id="formError" class="form-error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="tools-heading">
+      <h2 id="tools-heading">Browse Products</h2>
+      <div class="tools-grid">
+        <div class="field">
+          <p id="categoryFilterLabel" class="filter-title">Filter by Category</p>
+          <nav id="categoryFilterNav" class="category-tabs" aria-labelledby="categoryFilterLabel">
+            <button type="button" class="category-filter-btn is-active" data-category="all" aria-pressed="true">
+              All
+            </button>
+            <button type="button" class="category-filter-btn" data-category="Electronics" aria-pressed="false">
+              Electronics
+            </button>
+            <button type="button" class="category-filter-btn" data-category="Books" aria-pressed="false">
+              Books
+            </button>
+            <button type="button" class="category-filter-btn" data-category="Fashion" aria-pressed="false">
+              Fashion
+            </button>
+            <button type="button" class="category-filter-btn" data-category="Home" aria-pressed="false">
+              Home
+            </button>
+            <button type="button" class="category-filter-btn" data-category="Other" aria-pressed="false">
+              Other
+            </button>
+          </nav>
+        </div>
+
+        <div class="field">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" name="searchInput" type="search" placeholder="Search title or description">
+        </div>
+      </div>
+
+      <div class="stats">
+        <p>Total Products: <span id="productCount">0</span></p>
+        <p>Total Likes: <span id="likeCount">0</span></p>
+        <p>Total Comments: <span id="commentCount">0</span></p>
+      </div>
+      <p id="actionFeedback" class="action-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="productList" class="product-grid" aria-live="polite" aria-label="Product list"></section>
+    <p id="emptyState" class="empty-state">No products yet, share the first one!</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>BEUShareBox Classroom Project</small>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
