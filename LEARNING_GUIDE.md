@@ -54,4 +54,3 @@ For each exercise, write down:
 - which event handler runs;
 - when data is saved;
 - when the page is rendered again.
-
