@@ -1,95 +1,45 @@
 # BEUShareBox
 
-BEUShareBox, sınıf içi kullanım için geliştirilmiş tek sayfa (SPA) ürün paylaşım uygulamasıdır.  
-Proje yalnızca **HTML5 + CSS3 + Vanilla JavaScript** ile yazılmıştır (harici kütüphane/framework yoktur).
+BEUShareBox is a browser-only classroom project for sharing sample products. It uses HTML, CSS, and vanilla JavaScript without a framework or backend.
 
-## Özellikler
+> Learning status: This project was created with AI assistance. It is a candidate for hands-on learning because the repository has only three application files, but it should not be listed as a personal JavaScript skill until the project owner can explain and modify the main data flow.
 
-- Ürün ekleme (başlık, açıklama, fiyat, kategori)
-- Ürün linki ekleme (`Product URL`)
-- Görsel linki ekleme (`Image URL`)
-- Ürün linkinden otomatik bilgi doldurma (başlık/açıklama/fiyat/kategori/görsel)
-- Kategoriye göre filtreleme
-- Anlık arama (başlık + açıklama)
-- Her kartta beğeni sistemi
-- Her ürüne yorum ekleme
-- Onaylı ürün silme (`confirm`)
-- Ürün paylaşma:
-  - Destekleyen cihazlarda `navigator.share`
-  - Aksi durumda linki panoya kopyalama
-  - Uygun tarayıcıda görsel ile paylaşım denemesi
-- `localStorage` ile veri kalıcılığı
-- Boş durum mesajı + toplam ürün/beğeni/yorum istatistikleri
+## What the application does
 
-## Kullanılan Teknolojiler
+- adds products with a title, description, price, category, and optional links
+- stores products in the browser with `localStorage`
+- filters and searches the product list
+- records likes and comments
+- deletes products after confirmation
+- uses the Web Share API or clipboard as available
+- attempts to read public product-page metadata for optional form auto-fill
 
-- HTML5 (semantik yapı)
-- CSS3 (responsive, modern tasarım)
-- Vanilla JavaScript (DOM manipülasyonu, event delegation, localStorage)
-
-## Proje Yapısı
+## Files
 
 ```text
-.
-├── index.html   # Sayfa iskeleti ve semantik yapılar
-├── style.css    # Responsive tasarım, grid, hover/focus stilleri
-└── app.js       # Tüm işlevler (CRUD benzeri işlemler, filtre, arama, paylaşım, kalıcılık)
+webtabanli programlana 2. hafta uygulama/
+  index.html   page structure and form controls
+  style.css    responsive layout and visual styles
+  app.js       state, validation, rendering, storage, and interactions
 ```
 
-## Kurulum ve Çalıştırma
+## Run locally
 
-1. Depoyu indir / klonla.
-2. Proje klasörüne gir.
-3. `index.html` dosyasını tarayıcıda aç.
+You can open `index.html` directly. A local web server is better for clipboard, sharing, and network behavior:
 
-Öneri:
-- Geliştirme aşamasında **Live Server** veya benzeri bir yerel sunucu ile çalıştır.
-- Bazı paylaşım/panoya kopyalama özellikleri tarayıcıda `https` veya `localhost` gerektirebilir.
-
-## Kullanım Akışı
-
-1. Formdan ürün bilgilerini girip ürünü ekle.
-2. İstersen `Product URL` alanıyla ürün sayfasından alanları otomatik doldur.
-3. İstersen `Image URL` ile ürün kartına görsel ekle.
-4. Kartlar üzerinden:
-   - `Like` ile beğen
-   - Yorum ekle
-   - `Share` ile paylaş
-   - `Delete` ile sil
-5. Kategori sekmeleri ve arama alanı ile listeyi filtrele.
-
-## Veri Modeli
-
-Ürünler aşağıdaki yapıyla tutulur:
-
-```js
-{
-  id,
-  title,
-  description,
-  price,
-  category,
-  productUrl,
-  imageUrl,
-  likes,
-  comments: [],
-  createdAt
-}
+```bash
+cd "webtabanli programlana 2. hafta uygulama"
+python -m http.server 8000
 ```
 
-## Değerlendirme Kriterlerine Uyum
+Then open `http://127.0.0.1:8000`.
 
-- **HTML Yapısı:** `header/main/footer`, `section`, kart bazlı `article`, erişilebilirlik etiketleri
-- **CSS Tasarım:** Grid tabanlı responsive yapı, hover/focus durumları, CSS değişkenleri
-- **JavaScript İşlevsellik:** Ekleme, beğeni, yorum, filtre, arama, silme, localStorage
-- **UX:** Boş durum mesajı, doğrulama, geri bildirim metinleri, istatistikler
-- **Kod Kalitesi:** Anlamlı fonksiyon/değişken isimleri, fonksiyonlara ayrılmış modüler yapı
+## Known limitations
 
-## Bilinen Sınırlar
+- Data is stored only in the current browser, not in a shared database.
+- There are no accounts, permissions, or server-side validation.
+- Product-page auto-fill often fails because other sites block browser requests.
+- The project has no automated test suite yet.
+- User-provided external links and images should be treated as untrusted.
 
-- Ürün linkinden otomatik veri çekme, bazı sitelerde CORS/güvenlik politikası nedeniyle engellenebilir.
-- Görsel ile paylaşım, tarayıcı/cihaz desteğine ve görsel URL erişilebilirliğine bağlıdır.
-
-## Not
-
-Bu proje eğitim amaçlı geliştirilmiştir.
+See [LEARNING_GUIDE.md](./LEARNING_GUIDE.md) for the code flow, self-test questions, and small manual exercises.
